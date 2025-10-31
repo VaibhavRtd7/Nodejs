@@ -27,10 +27,13 @@ function calculate(operation, num1, num2) {
             result = "Invalid Operations";
     }
     
-    const output = `Operation: ${operation}\nNumbers: ${a}, ${b}\nResult: ${result}`;
+    const output = `Operation: ${operation}\nNumbers: ${num1}, ${num2}\nResult: ${result}`;
     fs.writeFileSync('result.txt', output);
 
     return result;
 }
+
+const ans = calculate("add", 3, 4);
+// console.log("Answer : ", ans)
 
 module.exports = { calculate }

@@ -1,0 +1,1 @@
+This section focuses on the  physical  aspects of data transmission, which is the very foundation of network communication. We will look into different network layouts (topologies), how  data  signals  travel across various media and the modes used for transmission.

@@ -5,7 +5,7 @@ function createTempFiles() {
 
     fs.writeFileSync('./demo_folder/file1.txt', 'Contents of file 1')
     fs.writeFileSync('./demo_folder/file2.txt', 'Contents of file 2')
-    fs.writeFileSync('./demo_folder/file3.txt', 'Contents of file 3')
+    fs.writeFileSync('./demo_folder/code.cpp', 'Contents of file 3')
 
     console.log('Files created successfully.')
 } 
@@ -26,7 +26,6 @@ function readFiles() {
         })
          
     });
-
 
 }
 

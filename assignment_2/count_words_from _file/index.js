@@ -1,4 +1,3 @@
-const { error } = require('console');
 const fs = require('fs');
 
 const fileName = 'myTextFile.txt';

@@ -18,6 +18,38 @@ app.get('/', (req, res) => {
 
 })
 
+app.get('/first-vowel', (req, res) => {
+    
+  const { name2, name } = req.query;
+  
+  if(!name || typeof name !== 'string') {
+    return res.status(400).json({
+      error : "Please provide a valid 'name' query parameter"
+    })
+  } 
+
+  const vowels = 'aeiou';
+  let firstVowel;
+  for(let char of name) {
+    if(vowels.includes(char)) {
+       firstVowel = char;
+       break;
+    }
+  }
+    
+   if(firstVowel == null) {
+    return res.status(404).json({
+      message : "No vowel is found in the given string"
+    }) 
+  }
+
+  res.json({
+    input : name,
+    firstVowel : firstVowel
+  })
+  
+})
+
 
 app.get('/product', (req, res) => {
 

@@ -8,7 +8,6 @@ const PORT = 3001;
 // Middleware to parse JSON body
 app.use(express.json());
 
-// Expects: { "filename": "test.txt", "content": "Hello world" }
 app.post('/upload', (req, res) => {
   const { filename, content } = req.body;
 

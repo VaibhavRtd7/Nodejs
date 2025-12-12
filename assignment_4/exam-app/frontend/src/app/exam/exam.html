@@ -1,0 +1,97 @@
+<div class="max-w-3xl mx-auto p-6">
+  <h1 class="text-2xl font-semibold mb-6">University Exam — 3 hours</h1>
+
+  <!-- Start card -->
+  <div class="bg-white shadow-sm rounded-lg border border-gray-200 p-4 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+      <label class="flex items-center space-x-2 mb-3 sm:mb-0">
+        <span class="text-sm text-gray-700">Student ID</span>
+        <input
+          class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          type="text"
+          [(ngModel)]="studentId"
+          placeholder="stu123"
+        />
+      </label>
+
+      <div class="flex items-center space-x-3">
+        <button
+          class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          (click)="startExam()"
+        >
+          Start Exam
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-4 text-sm text-gray-600" id="startInfo">
+  {{ startInfo }}
+
+  <!-- Show timer here when exam started -->
+  <div *ngIf="examId" class="mt-2 text-indigo-600 font-semibold text-lg">
+    Remaining: {{ timer }}
+  </div>
+</div>
+
+  </div>
+
+  <!-- Exam area -->
+  <div *ngIf="examId" class="space-y-6">
+    <!-- Info + Timer -->
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200 p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+      <div class="mb-3 sm:mb-0">
+        <div class="text-sm text-gray-600">Exam ID</div>
+        <div class="font-medium text-gray-800 break-words">{{ examId }}</div>
+        <div class="text-xs text-gray-500 mt-1">Ends at: <span class="font-medium">{{ endsAt }}</span></div>
+      </div>
+
+      <div class="text-center">
+        <div class="text-xs text-gray-500">Remaining</div>
+        <div class="text-3xl font-bold text-indigo-600 mt-1" id="timer">{{ timer }}</div>
+      </div>
+    </div>
+
+    <!-- Answers card -->
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200 p-4">
+      <label class="block text-sm text-gray-700 mb-2">Answers (JSON)</label>
+      <textarea
+        [(ngModel)]="answersText"
+        rows="8"
+        class="w-full border border-gray-300 rounded-md p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        placeholder='{"q1":"answer1","q2":"answer2"}'
+      ></textarea>
+
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-3 sm:space-y-0">
+        <button
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+          (click)="submit()"
+        >
+          Submit Now
+        </button>
+
+        <button
+          id="checkBtn"
+          class="bg-white border border-gray-300 text-gray-800 px-3 py-2 rounded hover:bg-gray-50"
+          (click)="checkBtn()"
+        >
+          Check Remaining Time
+        </button>
+
+        <div class="text-sm text-gray-500 ml-auto" *ngIf="submitResult">
+          <span [ngClass]="{'text-red-600': submitResult.includes('failed') || submitResult.includes('not accepted'), 'text-green-600': submitResult.includes('Submitted') }">
+            {{ submitResult }}
+          </span>
+        </div>
+      </div>
+
+      <div *ngIf="submitResult && !submitResult.includes('failed')" class="mt-3 text-sm text-gray-600">
+        <em>Tip:</em> your submission has been recorded. You can view results from the admin panel (not included in this demo).
+      </div>
+    </div>
+  </div>
+
+  <!-- No exam yet message -->
+  <div *ngIf="!examId" class="mt-6 text-sm text-gray-500">
+    Click <span class="font-medium">Start Exam</span> to begin. The server enforces the 3-hour limit.
+  </div>
+</div>
